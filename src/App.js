@@ -1,7 +1,7 @@
 import './App.css';
 import {data} from './data'
-import MovieCard from './MovieCard';
-import NavBar from './NavBar';
+import MovieCard from './components/MovieCard';
+import NavBar from './components/NavBar';
 
 
 function App() {
