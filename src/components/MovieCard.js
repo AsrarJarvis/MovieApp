@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
+import { addFav, removeFav } from '../Actions';
 
 export default class MovieCard extends Component {
+
+  handleClickFav = ()=>{
+    const {movie} = this.props;
+    this.props.dispatch(addFav(movie))
+  }
+
+  handleClickUnFav = ()=>{
+    const {movie} = this.props;
+    this.props.dispatch(removeFav(movie))
+  }
+
   render() {
-    const { movie } = this.props;
+    const { movie,isMovieFav } = this.props;
     return (
       <div className='movie-card'>
         <div className='left'>
@@ -13,7 +25,19 @@ export default class MovieCard extends Component {
             <div className='plot'>{movie.Plot}</div>
             <div className='footer'>
                 <div className='rating'>{movie.imdbRating}</div>
-                <button className='favourite-btn'>Favourite</button>
+                {isMovieFav ? 
+                  <button 
+                    className='unfavourite-btn'
+                    onClick={this.handleClickUnFav}
+                  >
+                        UnFavourite
+                  </button>
+                  :
+                  <button className='favourite-btn'
+                        onClick={this.handleClickFav}
+                        >Favourite</button>
+                }
+                
             </div>
         </div>
       </div>
