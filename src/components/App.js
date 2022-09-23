@@ -1,9 +1,10 @@
-import React,{ useEffect } from 'react';
+import React from 'react';
 import '../App.css';
 
 import MovieCard from './MovieCard';
 import NavBar from './NavBar';
 import {data} from '../data';
+import {addMovies} from '../Actions/index'
 
 
 class App extends React.Component {
@@ -15,18 +16,15 @@ class App extends React.Component {
     })
     // make api call
     // dispatch action
-    this.props.store.dispatch({
-      type: 'ADD_MOVIES',
-      movies: data
-    })
-  console.log("State",this.props.store.getState())
+    store.dispatch(addMovies(data))
+    console.log("State",this.props.store.getState())
 
   }
 
 
   
   render(){
-    const data = this.props.store.getState()
+    const {data} = this.props.store.getState()
     console.log('Rendered')
     return (
       <div className="App">
